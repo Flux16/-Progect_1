@@ -1,0 +1,35 @@
+<h1>Панель управления</h1>
+<div>Вы вошли как <strong>{{ user }}</strong></div>
+<form method="get" action="/dashboard" style="margin-bottom:20px;">
+  <label for="sort">Сортировать по:</label>
+  <select name="sort" id="sort" onchange="this.form.submit()">
+    <option value="name" {% if sort_key == 'name' %}selected{% endif %}>названию</option>
+    <option value="size" {% if sort_key == 'size' %}selected{% endif %}>весу</option>
+    <option value="format" {% if sort_key == 'format' %}selected{% endif %}>формату</option>
+    <option value="color" {% if sort_key == 'color' %}selected{% endif %}>цвету</option>
+    <option value="date" {% if sort_key == 'date' %}selected{% endif %}>дате изменения</option>
+  </select>
+</form>
+
+<form enctype="multipart/form-data" method="POST" action="/upload" style="margin-bottom:30px; max-width:350px;">
+  <label for="photo">Загрузить фото:</label>
+  <input id="photo" name="photo" type="file" required>
+  <input type="submit" value="Загрузить">
+</form>
+
+<div style="display:flex; flex-wrap: wrap;">
+  {% if photos %}
+    {% for photo in photos %}
+    <div class="photo-block">
+      <img src="/uploads/{{ photo.name }}" alt="{{ photo.name }}">
+      <div><strong>{{ photo.name }}</strong></div>
+      <div>Размер: {{ photo.size }}</div>
+      <div>Формат: {{ photo.format }}</div>
+      <div>Дата: {{ photo.date }}</div>
+      <div>Средний цвет: rgb({{ photo.color.0 }},{{ photo.color.1 }},{{ photo.color.2 }})</div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <p>Нет загруженных фотографий.</p>
+  {% endif %}
+</div>
