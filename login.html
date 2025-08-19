@@ -1,0 +1,17 @@
+<h1>Вход в систему</h1>
+{% if error %}
+<div class="msg error">{{ error }}</div>
+{% endif %}
+{% if success %}
+<div class="msg success">{{ success }}</div>
+{% endif %}
+<form method="post" action="/login">
+  <label for="username">Имя пользователя</label>
+  <input id="username" name="username" type="text" maxlength="30" required>
+  
+  <label for="password">Пароль</label>
+  <input id="password" name="password" type="password" maxlength="100" required>
+  
+  <input type="submit" value="Войти">
+</form>
+<p>Нет аккаунта? <a href="/register">Зарегистрируйтесь</a></p>
