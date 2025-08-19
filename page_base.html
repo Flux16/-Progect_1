@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>{{title}}</title>
+<style>
+  body {
+    margin: 0;
+    background: linear-gradient(to bottom, #000000, #001122);
+    color: white;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+  }
+  nav {
+    background-color: #001144;
+    padding: 10px 30px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  nav a {
+    color: #66ccff;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  nav a:hover {
+    color: #99ccff;
+    text-decoration: underline;
+  }
+  .user-info {
+    margin-left: auto;
+    color: #55aaff;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 15px;
+  }
+  h1, h2 {
+    color: #99ccff;
+  }
+  form label {
+    display: block;
+    margin: 10px 0 5px 0;
+    font-weight: 600;
+    color: #88bbff;
+  }
+  input[type="text"], input[type="password"], input[type="file"], select {
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+  }
+  input[type="submit"] {
+    background-color: #003366;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 30px;
+    font-size: 16px;
+  }
+  input[type="submit"]:hover {
+    background-color: #0055aa;
+  }
+  .photo-block {
+    display: inline-block;
+    margin: 15px;
+    padding: 10px;
+    background: #001a33;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: top;
+    width: 170px;
+    box-shadow: 0 0 10px rgba(0, 102, 204, 0.5);
+  }
+  .photo-block img {
+    max-width: 150px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(102, 204, 255, 0.7);
+    margin-bottom: 8px;
+  }
+  .msg {
+    background-color: #003366;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    max-width: 400px;
+  }
+  .error {
+    background-color: #cc4444;
+    color: #fff;
+    font-weight: 600;
+  }
+  .success {
+    background-color: #44cc44;
+    color: #fff;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+  <nav>
+    <a href="/dashboard">Главная</a>
+    <a href="/page1">Страница 1</a>
+    <a href="/page2">Страница 2</a>
+    <a href="/page3">Страница 3</a>
+    <div class="user-info">
+      {% if user %}
+        Пользователь: {{ user }} | <a href="/logout" style="color:#ff6666;">Выйти</a>
+      {% else %}
+        <a href="/login">Войти</a> | <a href="/register">Регистрация</a>
+      {% endif %}
+    </div>
+  </nav>
+  <div class="container">
+    {{ body }}
+  </div>
+</body>
+</html>
